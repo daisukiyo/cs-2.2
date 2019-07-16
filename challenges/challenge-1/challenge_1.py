@@ -21,7 +21,7 @@ class Vertex:
         self.id = vertex
         self.neighbors = {}
 
-    def addNeighbor(self, vertex, weight=0):
+    def add_neighbor(self, vertex, weight=0):
         """Add a neighbor as well as its weighted edge."""
         if vertex not in self.neighbors:
             self.neighbors[vertex] = weight
@@ -30,19 +30,19 @@ class Vertex:
         """Output the list of adjacent values (neighbors) of this vertex."""
         return str(self.id) + " adj to " + str([x.id for x in self.neighbors])
 
-    def getNeighbors(self):
+    def get_neighbors(self):
         """Return the neighbors of this vertex."""
         return self.neighbors
 
-    def getId(self):
+    def get_id(self):
         """Return the id of this vertex."""
         return self.id
 
-    def getEdgeWeight(self, vertex):
+    def get_edge_wt(self, vertex):
         """Return the weight of this edge."""
         return self.neighbors[vertex]
 
-    def getEdges(self):
+    def get_edges(self):
         """Get the edges of this vertex."""
         return len(self.neighbors.keys())
 
@@ -63,29 +63,29 @@ class Graph:
         self.vertList = {}
         self.vertCount = 0
 
-    def addVertex(self, key):
+    def add_vertex(self, key):
         """Add a new vertex object to the graph with its respective key."""
         self.vertCount += 1
         addedVertex = Vertex(key)
         self.vertList[key] = addedVertex
         return addedVertex
 
-    def getVertex(self, key):
+    def get_vertex(self, key):
         """Return the vertex if it exists."""
         if key in self.vertList:
             return self.vertList[key]
         else:
             return None
 
-    def addEdge(self, f, t, cost=0):
+    def add_edge(self, f, t, cost=1):
         """Add an edge from vertex f(from) to vertex t (to) with a cost."""
         if f not in self.vertList:
-            self.addVertex(f)
+            self.add_vertex(f)
         if t not in self.vertList:
-            self.addVertex(t)
-        self.vertList[f].addNeighbor(self.vertList[t], cost)
+            self.add_vertex(t)
+        self.vertList[f].add_neighbor(self.vertList[t], cost)
 
-    def getVertices(self):
+    def get_vertices(self):
         """Return all the vertices in the graph."""
         return self.vertList.keys()
 
@@ -93,47 +93,50 @@ class Graph:
         """Iterate over the vertext objects in the graph."""
         return iter(self.vertList.values())
 
-    def getAllEdges(self):
+    def get_all_edges(self):
         """Return the sum of all unique edges from every vertex."""
         sum = 0
         for vertex in self:
-            sum += vertex.getEdges()
+            sum += vertex.get_edges()
         return sum
 
 
 if __name__ == "__main__":
 
     # IMPORT DATA FROM TEXT FILE
-    graphData = "graph_data.txt"
+    graph_data = "graph_data.txt"
 
     # CONVERTS THE 2ND LINE (VERTICES) INTO A LIST OF VERTICES
-    verticeList = list(open(graphData).readlines()[1].strip().split(","))
+    vertice_list = list(open(graph_data).readlines()[1].strip().split(","))
 
     # CONVERTS EVERY LINE AFTER THE 2ND INTO A 2D-ARRAY OF CONNECTIONS
-    with open(graphData) as gd:
-        edgeList = []
+    with open(graph_data) as gd:
+        edge_list = []
         for line in islice(gd, 2, None):
-            tripletString = (line.strip())
-            edgeList.append((list(tripletString.strip("()").split(","))))
+            triplet_string = (line.strip())
+            edge_list.append((list(triplet_string.strip("()").split(","))))
 
     # CREATE GRAPH DATA STRUCTURE
     g = Graph()
 
     # ITERATE THROUGH LIST OF VERTICES
-    for vertex in verticeList:
+    for vertex in vertice_list:
         # ADD EACH VERTEX TO GRAPH
-        g.addVertex(vertex)
+        g.add_vertex(vertex)
 
+    print(edge_list)
     # ITERATE THROUGH LIST OF EDGES
-    for edge in edgeList:
-        g.addEdge(edge[0], edge[1], edge[2])
+    for edge in edge_list:
+        if edge[2] == "":
+            edge[2] = 0
+        g.add_edge(edge[0], edge[1], edge[2])
 
     # DISPLAY NUMBER OF VERTICES
-    print("# Vertices: " + str(len(verticeList)))
+    print("# Vertices: " + str(len(vertice_list)))
     # DISPLAY NUMBER OF EDGES
-    print("# Edges: " + str(g.getAllEdges()))
+    print("# Edges: " + str(g.get_all_edges()))
     # DISPLAY EDGE LIST
     print("Edge List:")
     for v in g:
-        for w in v.getNeighbors():
-            print("(%s,%s,%s)" % (v.getId(), w.getId(), v.getEdgeWeight(w)))
+        for w in v.get_neighbors():
+            print("(%s,%s,%s)" % (v.get_id(), w.get_id(), v.get_edge_wt(w)))
