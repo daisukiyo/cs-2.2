@@ -9,10 +9,10 @@ class VertexTest(unittest.TestCase):
         assert vertex.id == "a"
         assert any(vertex.neighbors) is False
 
-    def test_addNeighbor(self):
+    def test_add_neighbor(self):
         label = "a"
         vertex = Vertex(label)
-        vertex.addNeighbor("b", 0)
+        vertex.add_neighbor("b", 0)
         assert any(vertex.neighbors) is True
         assert vertex.neighbors == {"b": 0}
 
@@ -82,6 +82,27 @@ class GraphTest(unittest.TestCase):
         assert "d" in graph.get_vertices()
         assert "e" in graph.get_vertices()
         assert "x" not in graph.get_vertices()
+
+    def test_breadth_first_search(self):
+        g = Graph()
+
+        g.add_vertex(1)
+        g.add_vertex(2)
+        g.add_vertex(3)
+        g.add_vertex(4)
+        g.add_vertex(5)
+
+        g.add_edge(1, 2)
+        g.add_edge(1, 4)
+        g.add_edge(2, 3)
+        g.add_edge(2, 4)
+        g.add_edge(2, 5)
+        g.add_edge(3, 5)
+
+        g.breadth_first_search(1, 5)
+
+        assert len(path) == 3
+        assert distance == 2
 
 
 if __name__ == '__main__':

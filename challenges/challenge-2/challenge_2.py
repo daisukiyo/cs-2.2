@@ -60,38 +60,38 @@ class Graph:
 
     def __init__(self):
         """Initialize a graph object with an empty dictionary."""
-        self.vertList = {}
-        self.vertCount = 0
+        self.vert_list = {}
+        self.vert_count = 0
 
     def add_vertex(self, key):
         """Add a new vertex object to the graph with its respective key."""
-        self.vertCount += 1
-        addedVertex = Vertex(key)
-        self.vertList[key] = addedVertex
-        return addedVertex
+        self.vert_count += 1
+        added_vertex = Vertex(key)
+        self.vert_list[key] = added_vertex
+        return added_vertex
 
     def get_vertex(self, key):
         """Return the vertex if it exists."""
-        if key in self.vertList:
-            return self.vertList[key]
+        if key in self.vert_list:
+            return self.vert_list[key]
         else:
             return None
 
     def add_edge(self, f, t, cost=1):
         """Add an edge from vertex f(from) to vertex t (to) with a cost."""
-        if f not in self.vertList:
+        if f not in self.vert_list:
             self.add_vertex(f)
-        if t not in self.vertList:
+        if t not in self.vert_list:
             self.add_vertex(t)
-        self.vertList[f].add_neighbor(self.vertList[t], cost)
+        self.vert_list[f].add_neighbor(self.vert_list[t], cost)
 
     def get_vertices(self):
         """Return all the vertices in the graph."""
-        return self.vertList.keys()
+        return self.vert_list.keys()
 
     def __iter__(self):
         """Iterate over the vertext objects in the graph."""
-        return iter(self.vertList.values())
+        return iter(self.vert_list.values())
 
     def get_all_edges(self):
         """Return the sum of all unique edges from every vertex."""
@@ -122,7 +122,7 @@ class Graph:
                     print("Vertices in shortest path: " + str(",".join(path)))
                     print("Number of edges in shortest path: " + str(distance))
                     return distance
-                if self.vertList[current_node]:
+                if self.vert_list[current_node]:
                     for i in [x.id for x in self.get_vertex(current_node).neighbors]:
                         if i not in visited:
                             bfs_queue.append(i)
