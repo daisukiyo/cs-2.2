@@ -100,6 +100,45 @@ class Graph:
             sum += vertex.get_edges()
         return sum
 
+    def breadth_first_search(self, start, end):
+        """Compute the shortest path between two provided vertices in the graph.
+
+        Runtime: n+m
+        
+        """
+        visited = []
+        bfs_queue = []
+        path_trace= {}
+        path = []
+        distance = 0
+        bfs_queue.append(start)
+        visited.append(start)
+        current_neighbor_count = 1
+        while bfs_queue:
+            while current_neighbor_count > 0:
+                current_neighbor_count -= 1
+                current_node = bfs_queue.pop(0)
+                if current_node == end:
+                    print("Vertices in shortest path: " + str(",".join(path)))
+                    print("Number of edges in shortest path: " + str(distance))
+                    return distance
+                if self.vertList[current_node]:
+                    for i in [x.id for x in self.get_vertex(current_node).neighbors]:
+                        if i not in visited:
+                            bfs_queue.append(i)
+                            visited.append(i)
+                            path_trace[i] = current_node
+                            if (i == end):
+                                backwalk_id = end
+                                while backwalk_id != start:
+                                    path.insert(0, backwalk_id)
+                                    backwalk_id = path_trace[backwalk_id]
+                                path.insert(0, backwalk_id)
+
+            current_neighbor_count = len(bfs_queue)
+            distance += 1
+            
+        
 
 if __name__ == "__main__":
 
@@ -124,17 +163,8 @@ if __name__ == "__main__":
         # ADD EACH VERTEX TO GRAPH
         g.add_vertex(vertex)
 
-    print(edge_list)
     # ITERATE THROUGH LIST OF EDGES
     for edge in edge_list:
         g.add_edge(edge[0], edge[1])
 
-    # DISPLAY NUMBER OF VERTICES
-    print("# Vertices: " + str(len(vertice_list)))
-    # DISPLAY NUMBER OF EDGES2
-    print("# Edges: " + str(g.get_all_edges()))
-    # DISPLAY EDGE LIST
-    print("Edge List:")
-    for v in g:
-        for w in v.get_neighbors():
-            print("(%s,%s)" % (v.get_id(), w.get_id()))
+    g.breadth_first_search(sys.argv[2], sys.argv[3])
