@@ -7,6 +7,11 @@ if __name__ == "__main__":
     # IMPORT DATA FROM TEXT FILE
     graph_data = sys.argv[1]
 
+    try:
+        gd = open(graph_data,'r')
+    except FileNotFoundError:
+        print('file not found: please use valid graph data')
+
     # GRAPH TYPE
     graph_type = open(graph_data).readlines()[0].strip()
     if graph_type == "G":
@@ -29,8 +34,6 @@ if __name__ == "__main__":
     # CREATE GRAPH DATA STRUCTURE
     g = graph.Graph()
 
-    # print(vertice_list)
-
     # ITERATE THROUGH LIST OF VERTICES
     for vertex in vertice_list:
         # ADD EACH VERTEX TO GRAPH
@@ -40,15 +43,11 @@ if __name__ == "__main__":
     for edge in edge_list:
         g.add_edge(edge[0], edge[1])
 
-    # # DISPLAY NUMBER OF VERTICES
-    # print("# Vertices: " + str(len(vertice_list)))
-    # # DISPLAY NUMBER OF EDGES
-    # print("# Edges: " + str(g.get_all_edges()))
-    # # DISPLAY EDGE LIST
-    # print("Edge List:")
-    # for v in g:
-    #     for w in v.get_neighbors():
-    #         print("(%s,%s)" % (v.get_id(), w.get_id()))
+    # CREATE START VERTICE
     start = g.get_vertex(sys.argv[2])
+
+    # CREATE END VERTICE
     end = g.get_vertex(sys.argv[3])
+
+    # CALL RECURSIVE DEPTH FIRST SEARCH
     g.recursive_dfs(start, end)

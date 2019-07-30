@@ -1,4 +1,5 @@
 import vertex
+import sys
 
 class Graph:
     """Create a new, empty graph.
@@ -53,24 +54,58 @@ class Graph:
             sum += vertex.get_edges()
         return sum
 
-    def recursive_dfs(self, start, end, visited=None):
-       
+    def recursive_dfs(self, start, end, visited=None, path=None):
+        """Determine if there is a path between two vertices.
+
+        Parameters:
+            start (): the starting vertice
+            end (): the ending vertice
+            visited (set): unique vertices that have been visited
+            path (list): vertices of the path
+
+        Returns:
+            Bool: Whether or not a path exists
+        
+        Analysis:
+            Time Complexity: O(m + n)
+            Space Complexity: O(n)
+        
+        """
+        # initialize path list with starting vertice
+        if path is None:
+            path = [start]
+
+        # initialize empty set for visited vertices
         if visited is None:
            visited = set()
       
-        # print(start)
+        # add starting vertice to visited vertices
         visited.add(start)
-        # print(visited)
 
+        # store all neighbors of start vertice in set
         neighbors = set([x for x in start.get_neighbors()])
- 
+        
+        # initialize loop count as 0
+        loop_count = 0
+
+        # iterate through vertices
         for next in neighbors - visited:
+            # remove visited path if it results in a dead end (incomplete)
+            if loop_count > 0:
+                path.pop()
+
+            # add to list of visited vertices
+            path.append(next)
+
+            # full path completed
             if next == end:
                 visited.add(next)
-                print("There exists a path between vertex 1 and 5: TRUE")
-                print("Vertices in the path:", [int(x.id) for x in visited])
-            # else:
-            #     print("There exists a path between vertex 1 and 5: FALSE")
-            self.recursive_dfs(next, end, visited)
-        
-        # return visited
+                ordered_vertice_path = ([(x.id) for x in path])
+                print("There exists a path between vertex %s and %s: TRUE" %(sys.argv[2], sys.argv[3]))
+                print("Vertices in the path:", ','.join(ordered_vertice_path))
+                return True
+
+            loop_count += 1
+
+            self.recursive_dfs(next, end, visited, path)
+    
