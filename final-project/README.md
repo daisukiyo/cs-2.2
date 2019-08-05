@@ -1,15 +1,14 @@
 # Final Project - NBA Players
 
-I will be using a small, personally generated data set of NBA players.
+I will be using a small, personally generated data set of NBA players to study the the relationships between the players. 
 
-I will primarily focus on the relationships between the players:
-
+---
 The graph that I will be generating will have:
 
 1. Vertice represents the NBA player
 2. Edge represents their relation as teammates
 3. The weight of each edge represents the years played together
-
+---
 By Developing this graph I hope to solve the 3 following problems: 
 
 1. Player with the most teammates (Journeyman)
@@ -19,3 +18,7 @@ By Developing this graph I hope to solve the 3 following problems:
     1. Not necessarily true, but we can assume that the more years played together, the more chemistry that they share
 3. Largest potential team of past/present teammates
     1. this is a clique? 
+---
+### Note
+
+Using a basketball api is unfortunately out of scope for this project. "Years played together" is not a statistic easily accessible. To do so, I would have to compare the career stats between players to count the matching team/season.
