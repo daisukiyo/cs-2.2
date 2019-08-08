@@ -2,17 +2,17 @@ import unittest
 from challenge_1 import Vertex, Graph
 
 
-class VertexTest(unittest.TestCase):
+class BfsTest(unittest.TestCase):
     def test_init(self, vertex):
         label = "a"
         vertex = Vertex(label)
         assert vertex.id == "a"
-        assert any(vertex.neighbors) is false
+        assert any(vertex.neighbors) is False
 
-    def test_addNeighbor(self):
+    def test_add_neighbor(self):
         label = "a"
         vertex = Vertex(label)
-        vertex.addNeighbor("b", 0)
+        vertex.add_neighbor("b", 0)
         assert any(vertex.neighbors) is True
         assert vertex.neighbors == {"b": 0}
 
@@ -20,23 +20,23 @@ class VertexTest(unittest.TestCase):
 class GraphTest(unittest.TestCase):
     def test_init(self):
         graph = Graph()
-        assert any(graph.vertList) is False
+        assert any(graph.vert_list) is False
         assert graph.vertCount == 0
 
     def test_add_vertex(self):
         graph = Graph()
         graph.add_vertex("a")
-        assert graph.numVertices == 1
-        assert "a" in graph.vertList.keys()
+        assert graph.vert_count == 1
+        assert "a" in graph.vert_list.keys()
 
         graph.add_vertex("b")
         graph.add_vertex("c")
         graph.add_vertex("d")
         graph.add_vertex("e")
-        assert graph.numVertices == 5
+        assert graph.vert_count == 5
         graph.add_vertex("a")
-        assert graph.numVertices == 5
-        assert len(graph.vertList) == 5
+        assert graph.vert_count == 5
+        assert len(graph.vert_list) == 5
 
     def test_get_vertex(self):
         graph = Graph()

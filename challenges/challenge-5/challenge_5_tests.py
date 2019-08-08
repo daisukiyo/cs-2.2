@@ -109,7 +109,22 @@ class GraphTest(unittest.TestCase):
         assert bool(recursive_dfs()) == True
 
     def test_eulerian(self):
-        
+        g = graph.Graph()
+
+        g.add_vertex(1)
+        g.add_vertex(2)
+        g.add_vertex(3)
+        g.add_vertex(4)
+        g.add_vertex(5)
+
+        g.add_edge(1, 2)
+        g.add_edge(1, 4)
+        g.add_edge(2, 3)
+        g.add_edge(2, 4)
+        g.add_edge(3, 5)
+        g.add_edge(5, 2)
+
+        assert g.eulerian() == False
 
 
 if __name__ == '__main__':

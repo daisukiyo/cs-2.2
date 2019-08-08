@@ -12,6 +12,7 @@ def max_sub_array_sum(a, size):
     Runtime: 
     O(n)
     """
+    
     # base case
     max_so_far = a[0]
     current_max = a[0]
