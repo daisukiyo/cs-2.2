@@ -3,6 +3,7 @@
 I will be using a small, personally generated data set of NBA players to study the the relationships between the players. 
 
 Check out the Medium Post I wrote that dives deeper into the NBA and Graph Theory [here](https://medium.com/@timothy.kaing/nba-players-and-graph-theory-17362379aece)
+
 ---
 The graph that I will be generating will have:
 
