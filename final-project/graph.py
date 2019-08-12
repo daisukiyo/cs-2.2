@@ -73,18 +73,35 @@ class Graph:
             for neighbor in vertice.get_neighbors():
                 if neighbor.get_edge_wt(vertice) > years_played[0]:
                     years_played = (neighbor.get_edge_wt(vertice), vertice.get_id(), neighbor.get_id())
-        print(years_played)
+        return years_played
 
-    def large_team(self):
-        rand_key = random.choice(self.vertList.keys())
-        clique = set(rand_key)
+    def clique(self, key=None):
+        # generates a random player to find a team for if not specified
+        if key is None:
+            rand_key = random.choice(list(self.vertList.keys()))
+        else:
+            rand_key = key
+        
+        # check for invalid input
+        if key not in list(self.vertList.keys()):
+            print("Player does not exist.")
+            exit()
+
+        clique = set([rand_key])
         vertList = [(k, v) for k, v in self.vertList.items() if k != rand_key]
 
         # iterate over remaining vertices
         for id, vtx in vertList:
-            for neighbor in vtx.get_neighbors(as_string=True):
-                if neighbor in clique:
-                    clique.add(id)
+            all_players = True
+            neighbors = vtx.get_neighbors()
+            # checks to see if the player is part of the clique
+            for players in clique:
+                # if the players don't share the same neighbor
+                if self.get_vertex(players) not in neighbors:
+                    # not in the clique
+                    all_players = False
+            if all_players:
+                # add to clique
+                clique.add(id)
 
-        # return clique
         return clique

@@ -32,21 +32,14 @@ if __name__ == "__main__":
         g.add_edge(edge[0].strip(), edge[1].strip(), int(edge[2]))
         g.add_edge(edge[1].strip(), edge[0].strip(), int(edge[2]))
 
-    # # DISPLAY NUMBER OF VERTICES
-    # print("# Vertices: " + str(len(vertice_list)))
-    # # DISPLAY NUMBER OF EDGES
-    # print("# Edges: " + str(g.get_all_edges()))
-    # # DISPLAY EDGE LIST
-    # print("Edge List:")
-    # for v in g:
-    #     for w in v.get_neighbors():
-    #         print("(%s, %s, %s)" % (v.get_id(), w.get_id(), v.get_edge_wt(w)))
 
     print("Question #1: Which player has had the most teammates?")
     print("Answer: %s with %s teammates." % (g.journeyman()[0], g.journeyman()[1]))
-    print("Question #2: Which two players have the most chemistry?")
-    g.chemistry()
-    print("Question #3: Largest potential team?")
-    # g.large_team()
+    print("\nQuestion #2: Which two players have the most chemistry?")
+    print("Answer: %s & %s - %s Years as Teammates." % (g.chemistry()[1], g.chemistry()[2], g.chemistry()[0]))
+    print("\nQuestion #3: Largest potential team?")
+    player = input("Enter a player's name to find their largest potential team. \nLeave blank for a random player: ").title()
+    print("Answer: %s" % ', '.join(g.clique(player)))
+
 
     
