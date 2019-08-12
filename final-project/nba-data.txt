@@ -1,0 +1,60 @@
+Lebron James
+Kevin Durant
+Stephen Curry
+James Harden
+Anthony Davis
+Giannis Antetokounmpo
+Russell Westbrook
+Chris Paul
+Joel Embiid
+Jimmy Butler
+Paul George
+Kawhi Leonard
+Draymond Green
+Rudy Gobert
+Damian Lillard
+Al Horford
+Kyrie Irving
+Nikola Jokic
+Karl-Anthony Towns
+Victor Oladipo
+Lamarcus Aldridge
+Klay Thompson
+Kyle Lowry
+John Wall
+Gordon Hayward
+Ben Simmons
+Bradley Beal
+Khris Middleton
+Jrue Holiday
+Demar Derozan
+
+(Lebron James, Anthony Davis, 1)
+(Lebron James, Kyrie Irving, 3)
+(Kevin Durant, Stephen Curry, 3)
+(Kevin Durant, James Harden, 3)
+(Kevin Durant, Russell Westbrook, 8)
+(Kevin Durant, Draymond Green, 3)
+(Kevin Durant, Klay Thompson, 3)
+(Kevin Durant, Kyrie Irving, 1)
+(Stephen Curry, Draymond Green, 8)
+(Stephen Curry, Klay Thompson, 9)
+(James Harden, Russell Westbrook, 4)
+(James Harden, Chris Paul, 2)
+(Anthony Davis, Jrue Holiday, 6)
+(Giannis Antetokounmpo, Khris Middleton, 7)
+(Russell Westbrook, Paul George, 2)
+(Russell Westbrook, Victor Oladipo, 1)
+(Joel Embiid, Ben Simmons, 3)
+(Joel Embiid, Jimmy Butler, 2)
+(Jimmy Butler, Karl-Anthony Towns, 2)
+(Paul George, Kawhi Leonard, 1)
+(Kawhi-Leonard, Kyle Lowry, 1)
+(Kawhi Leonard, Lamarcus Aldridge, 3)
+(Rudy Gobert, Gordon Hayward, 4)
+(Damian Lillard, Lamarcus Aldridge, 3)
+(Al Horford, Kyrie Irving, 2)
+(Al Horford, Gordon Hayward, 3)
+(Lamarcus Aldridge, Demar Derozan, 2)
+(Kyle Lowry, Demar Derozan, 6)
+(John Wall, Bradley Beal, 8)
